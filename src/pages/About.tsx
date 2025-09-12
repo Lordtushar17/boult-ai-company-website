@@ -92,7 +92,7 @@ const About = () => {
                 <p>
                   The strong design oriented organization known today as <span className="font-semibold text-[#0A1F44]">Yantrashilpa</span> evolved 
                   from a solid technical and administrative support base. The origins of its Engine testing equipments 
-                  often trace back to the SPM's and test-rigs for ballistic applications, designed by founder in the late 90's.
+                  often trace back to the SPM's and test-rigs for ballistic applications, designed by founder in the late 90\'s.
                 </p>
                 
                 <p>

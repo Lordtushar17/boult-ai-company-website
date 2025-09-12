@@ -1,0 +1,21 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif'],
+        'roboto': ['Roboto', 'sans-serif'],
+      },
+      colors: {
+        primary: '#0A1F44',
+        accent: '#F97316',
+        light: '#F4F4F4',
+      },
+      animation: {
+        'bounce-slow': 'bounce 2s infinite',
+      },
+    },
+  },
+  plugins: [],
+};

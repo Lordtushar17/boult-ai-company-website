@@ -1,21 +1,17 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Mail, Phone, Clock, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 
 const Footer = () => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };  //footer
+  const location = useLocation();  //footer
 
   const quickLinks = [
-    { name: 'Home', id: 'hero' },
-    { name: 'About Us', id: 'who-we-are' },
-    { name: 'Products', id: 'services' },
-    { name: 'Gallery', id: 'limelight' },
-    { name: 'Career', id: 'values' },
-    { name: 'Contact', id: 'contact' }
+    { name: 'Home', path: '/' },
+    { name: 'About Us', path: '/about' },
+    { name: 'Products', path: '/products' },
+    { name: 'Gallery', path: '/gallery' },
+    { name: 'Career', path: '/career' },
+    { name: 'Contact', path: '/contact' }
   ];
 
   const socialLinks = [
@@ -34,14 +30,14 @@ const Footer = () => {
             {/* Left Column - Company Info */}
             <div className="space-y-6">
               {/* Logo */}
-              <div className="flex items-center mb-6">
+              <Link to="/" className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-[#F97316] rounded-full flex items-center justify-center text-white font-bold text-xl">
                   Y
                 </div>
                 <span className="ml-3 text-white font-poppins font-semibold text-xl">
                   Yantrashilpa Technologies
                 </span>
-              </div>
+              </Link>
 
               {/* Contact Info */}
               <div className="space-y-4">
@@ -61,13 +57,13 @@ const Footer = () => {
               <h3 className="text-xl font-poppins font-semibold mb-6">Quick Links</h3>
               <div className="space-y-3">
                 {quickLinks.map((link) => (
-                  <button
-                    key={link.id}
-                    onClick={() => scrollToSection(link.id)}
+                  <Link
+                    key={link.path}
+                    to={link.path}
                     className="block text-gray-300 hover:text-[#F97316] font-roboto transition-colors duration-300"
                   >
                     {link.name}
-                  </button>
+                  </Link>
                 ))}
               </div>
             </div>

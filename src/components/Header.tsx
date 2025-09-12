@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Mail, Phone, Key, Menu, X } from 'lucide-react';
 
 //header 
@@ -6,6 +7,7 @@ import { Mail, Phone, Key, Menu, X } from 'lucide-react';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,21 +17,13 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
-    }
-  };
-
   const navItems = [
-    { name: 'Home', id: 'hero' },
-    { name: 'About Us', id: 'who-we-are' },
-    { name: 'Products', id: 'services' },
-    { name: 'Gallery', id: 'limelight' },
-    { name: 'Career', id: 'values' },
-    { name: 'Contact', id: 'contact' },
+    { name: 'Home', path: '/' },
+    { name: 'About Us', path: '/about' },
+    { name: 'Products', path: '/products' },
+    { name: 'Gallery', path: '/gallery' },
+    { name: 'Career', path: '/career' },
+    { name: 'Contact', path: '/contact' },
   ];
 
   return (
@@ -62,25 +56,33 @@ const Header = () => {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex items-center">
-              <div className="w-10 h-10 bg-[#0A1F44] rounded-full flex items-center justify-center text-white font-bold text-xl">
-                Y
-              </div>
-              <span className="ml-2 text-[#0A1F44] font-poppins font-semibold text-lg">
-                Yantrashilpa
-              </span>
+              <Link to="/" className="flex items-center">
+                <div className="w-10 h-10 bg-[#0A1F44] rounded-full flex items-center justify-center text-white font-bold text-xl">
+                  Y
+                </div>
+                <span className="ml-2 text-[#0A1F44] font-poppins font-semibold text-lg">
+                  Yantrashilpa
+                </span>
+              </Link>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
               {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="text-gray-700 hover:text-[#F97316] font-roboto font-medium transition-colors duration-300 relative group"
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`font-roboto font-medium transition-colors duration-300 relative group ${
+                    location.pathname === item.path 
+                      ? 'text-[#F97316]' 
+                      : 'text-gray-700 hover:text-[#F97316]'
+                  }`}
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#F97316] group-hover:w-full transition-all duration-300"></span>
-                </button>
+                  <span className={`absolute bottom-0 left-0 h-0.5 bg-[#F97316] transition-all duration-300 ${
+                    location.pathname === item.path ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}></span>
+                </Link>
               ))}
             </div>
 
@@ -98,13 +100,18 @@ const Header = () => {
             <div className="md:hidden bg-white border-t border-gray-200">
               <div className="py-4 space-y-2">
                 {navItems.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className="block w-full text-left px-4 py-2 text-gray-700 hover:text-[#F97316] hover:bg-gray-50 transition-colors"
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`block px-4 py-2 transition-colors ${
+                      location.pathname === item.path
+                        ? 'text-[#F97316] bg-orange-50'
+                        : 'text-gray-700 hover:text-[#F97316] hover:bg-gray-50'
+                    }`}
                   >
                     {item.name}
-                  </button>
+                  </Link>
                 ))}
               </div>
             </div>

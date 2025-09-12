@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Hero from './components/Hero';
-import WhoWeAre from './components/WhoWeAre';
-import Stats from './components/Stats';
-import Services from './components/Services';
-import Values from './components/Values';
-import InLimelight from './components/InLimelight';
 import Footer from './components/Footer';
-
-
+import Home from './pages/Home';
+import About from './pages/About';
+import Products from './pages/Products';
+import Gallery from './pages/Gallery';
+import Career from './pages/Career';
+import Contact from './pages/Contact';
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -18,18 +17,22 @@ function App() {
   }, []);
 
   return (
-    <div className={`min-h-screen transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-      <Header />
-      <main>
-        <Hero />
-        <WhoWeAre />
-        <Stats />
-        <Services />
-        <Values />
-        <InLimelight />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className={`min-h-screen transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/career" element={<Career />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

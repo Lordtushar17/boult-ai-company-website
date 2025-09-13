@@ -41,10 +41,13 @@ const Header = () => {
               <span>+91 9112211150</span>
             </div>
           </div>
-          <button className="flex items-center gap-2 bg-[#F97316] hover:bg-orange-600 px-3 py-1 rounded transition-colors">
+          <Link 
+            to="/admin/login"
+            className="flex items-center gap-2 bg-[#F97316] hover:bg-orange-600 px-3 py-1 rounded transition-colors"
+          >
             <Key size={14} />
             <span>Admin Login</span>
-          </button>
+          </Link>
         </div>
       </div>
 
